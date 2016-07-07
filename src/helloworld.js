@@ -51,20 +51,17 @@ var App = React.createClass({
         };
         var makeButton = function(colorstr) {
             return (
-                <button type="button" style={{width:20, height:20, background:colorstr}}
+                <button type="button" style={{width:20, height:20, margin:5, background:colorstr}}
                     onClick={self.changeColor.bind(null,colorstr)}/> // FIXME: don't quite understand the .bind(null,...)
             );
         };
         return (
             <Grid>
+               <h1> Electron Blink(1) Toy! </h1>
+                {makeDevList()}
+
                 <Row>
-                   <h1> Electron Blink(1) Toy! </h1>
-                </Row>
-                <Row>
-                    {makeDevList()}
-                </Row>
-                <Row>
-                    <Col>
+                    <Col xs={12}>
                         <h3> Click to change color </h3>
                             {makeButton('#000000')}
                             {makeButton('#ff0000')}

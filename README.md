@@ -12,6 +12,9 @@ npm install
 npm start
 ```
 
+![screenshot](./screenshot.png)
+
+
 Uses the magic of `require('babel-register')` in both the app and renderer to do on-the-fly transpiling
 
 This project leans heavily on https://github.com/b52/electron-es6-react
