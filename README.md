@@ -12,7 +12,6 @@ npm install
 npm start
 ```
 
-Assumes you have `babel` installed
-Uses the magic on `require('babel-register')` in both the app and renderer
+Uses the magic of `require('babel-register')` in both the app and renderer to do on-the-fly transpiling
 
 This project leans heavily on https://github.com/b52/electron-es6-react
