@@ -2,7 +2,7 @@
 
 A simple Electron app to experiment with `node-blink1` & `node-hid`.
 
-Tested on Electron v1.2.6.
+Tested on Electron v1.2.6+.
 
 Assumes you have blink(1) device plugged in before running app.
 
@@ -21,9 +21,9 @@ For more details on what you need, see:
 
 But basically:
 
-* For Mac OS X: Install XCode and enable Command Line Tools
-* For Windows:`npm install --global --production windows-build-tools ; npm install -g node-gyp` (from admin shell)
-* For Linux: Python, make, gcc (`sudo apt-get install build-essential` on Ubuntu)
+* Mac OS X: Install XCode and enable Command Line Tools
+* Windows: `npm install -g --production windows-build-tools ; npm install -g node-gyp` (via admin shell)
+* Linux: Python, make, gcc (`sudo apt-get install build-essential` on Ubuntu)
 
 
 ![screenshot](./screenshot.png)
