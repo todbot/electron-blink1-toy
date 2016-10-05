@@ -22,7 +22,7 @@ For more details on what you need, see:
 But basically:
 
 * For Mac OS X: Install XCode and enable Command Line Tools
-* For Windows: `npm install --global --production windows-build-tools` from admin shell
+* For Windows:`npm install --global --production windows-build-tools ; npm install -g node-gyp` (from admin shell)
 * For Linux: Python, make, gcc (`sudo apt-get install build-essential` on Ubuntu)
 
 
