@@ -12,6 +12,11 @@ npm install
 npm start
 ```
 
+Note:
+Because `node-hid` will need to be recompiled for Electron, you will need compilers for your OS installed.
+For more details on what you need, see: https://github.com/nodejs/node-gyp#installation
+
+
 ![screenshot](./screenshot.png)
 
 Uses the magic of `require('babel-register')` in both the app and renderer to do on-the-fly transpiling
