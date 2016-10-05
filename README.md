@@ -12,9 +12,18 @@ npm install
 npm start
 ```
 
-Note:
+#### Note:
 Because `node-hid` will need to be recompiled for Electron, you will need compilers for your OS installed.
-For more details on what you need, see: https://github.com/nodejs/node-gyp#installation
+
+For more details on what you need, see: 
+* https://github.com/nodejs/node-gyp#installation
+* https://github.com/node-hid/node-hid#compiling-from-source
+
+But basically:
+
+* For Mac OS X: Install XCode and enable Command Line Tools
+* For Windows: `npm install --global --production windows-build-tools` from admin shell
+* For Linux: Python, make, gcc (`sudo apt-get install build-essential` on Ubuntu)
 
 
 ![screenshot](./screenshot.png)
