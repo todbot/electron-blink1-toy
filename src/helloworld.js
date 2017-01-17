@@ -43,7 +43,7 @@ var App = React.createClass({
         var self = this;
         var makeDevList = function() {
             if( !devices.length ) {
-                return ( <h4> No blink(1) devices found </h4> );
+                return ( <h4> No blink(1) devices found. Insert blink(1) and restart app. </h4> );
             }
             return (
                 <h4> blink(1) device found: <b>{devices[0]}</b></h4>

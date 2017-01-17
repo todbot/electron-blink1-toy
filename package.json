@@ -1,6 +1,6 @@
 {
   "name": "electron-blink1-toy",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Play with Electron and node-blink1",
   "main": "main.js",
   "repository": "todbot/electron-blink1-toy",
@@ -25,7 +25,7 @@
     "bootstrap": "^3.3.5",
     "electron": "^1.4.2",
     "node-blink1": "^0.2.2",
-    "node-hid": "^0.5.1",
+    "node-hid": "^0.5.4",
     "react": "^0.14.2",
     "react-bootstrap": "^0.27.3",
     "react-dom": "^0.14.2",
