@@ -1,13 +1,13 @@
 {
   "name": "electron-blink1-toy",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Play with Electron and node-blink1",
   "main": "main.js",
   "repository": "todbot/electron-blink1-toy",
   "scripts": {
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "electron-rebuild --pre-gyp-fix --force --module_dir . -w node-hid -e node_modules/electron"
+    "postinstall": "electron-rebuild --force --module_dir ."
   },
   "author": "Tod Kurt <todbotdotcom@gmail.com> (https://github.com/todbot)",
   "license": "ISC",
@@ -23,7 +23,7 @@
     "babel-preset-react": "^6.3.13",
     "babel-register": "^6.9.0",
     "bootstrap": "^3.3.5",
-    "electron": "^1.4.2",
+    "electron": "^1.5.0",
     "node-blink1": "^0.2.2",
     "node-hid": "^0.5.4",
     "react": "^0.14.2",
