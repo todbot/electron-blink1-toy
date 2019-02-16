@@ -19,7 +19,7 @@ var blink1 = null;
 if( devices.length ) { // have at least one blink(1) plugged in
     console.log("Found blink1 devices: ", devices);
     blink1 = new Blink1();
-    blink1.fadeToRGB(100, 0,0,0 );
+    blink1.fadeToRGB(100, 120,100,80 );
 }
 
 var App = React.createClass({
