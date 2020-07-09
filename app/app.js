@@ -14,8 +14,8 @@ var tinycolor = require('tinycolor2');
 
 var blink1 = null;
 var devices = [];
-var Blink1 = require('node-blink1');
 
+var Blink1 = require('node-blink1');
 devices = Blink1.devices(); // returns array of serial numbers
 if( devices.length ) { // have at least one blink(1) plugged in
     console.log("Found blink1 devices: ", devices);

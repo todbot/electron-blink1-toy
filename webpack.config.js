@@ -3,9 +3,9 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
 
 var config = {
+  target: 'electron-renderer',
   context: path.join(__dirname, '/app'),
   entry: './app.js',
-  target: 'electron-renderer',
   output: {
     path: path.join(__dirname, '/app/build'),
     filename: 'bundle.js',    // "./app/build/bundle.js"
@@ -42,7 +42,7 @@ var config = {
         template: path.resolve(__dirname, 'app/index.html')
     }),
   ],
-
+  devtool: "source-map",
   devServer: {
     contentBase: './app',
     hot: true,

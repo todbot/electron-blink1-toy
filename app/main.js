@@ -1,24 +1,23 @@
 'use strict'
 
-//require('@babel/register');
-
 var electron = require('electron');
 var app = electron.app;  // Module to control application life.
 var BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
 
 var path = require('path');
 
-const isDevelopment = process.env.NODE_ENV !== 'production'
+const isDevelopment = process.env.NODE_ENV == 'development'
 
 // global reference to mainWindow (necessary to prevent window from being garbage collected)
 var mainWindow
 
 function createMainWindow() {
-  const window = new BrowserWindow({webPreferences: {nodeIntegration: true}})
+  const window = new BrowserWindow({
+    width: 500,
+    height: 500,
+    webPreferences: { nodeIntegration: true }
+   });
 
-  if (isDevelopment) {
-    window.webContents.openDevTools()
-  }
   var loadurl = 'file://' + __dirname + '/build/index.html';
 
   window.loadURL( loadurl );
@@ -38,12 +37,16 @@ function createMainWindow() {
     mainWindow = null
   })
 
-  window.webContents.on('devtools-opened', () => {
-    window.focus()
-    setImmediate(() => {
-      window.focus()
-    })
-  })
+  // window.webContents.on('devtools-opened', () => {
+  //   window.focus()
+  //   setImmediate(() => {
+  //     window.focus()
+  //   })
+  // })
+
+  if (isDevelopment) {
+    window.webContents.openDevTools()
+  }
 
   console.log("created window")
 
