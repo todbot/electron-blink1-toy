@@ -12,10 +12,16 @@ npm install
 npm start
 ```
 
+To build the application: 
+```
+npm install
+npm build
+```
+
 ![screenshot](./screenshot.png)
 
 #### Note:
-Because `node-hid` will need to be recompiled for Electron, you will need compilers for your OS installed.
+Because `node-hid` will need to be recompiled for Electron, you may need compilers for your OS installed.
 
 For more details on what you need, see: 
 * https://github.com/nodejs/node-gyp#installation
@@ -31,7 +37,5 @@ But basically:
 
 Uses the magic of `require('babel-register')` in both the app and renderer to do on-the-fly transpiling
 
-Note: the `node-hid` library needs to be recompiled for Electron. The `electron-rebuild` tool does this,
-and should be done automatically for you via the "postinstall" script of this project.  
 
 This project leans heavily on https://github.com/b52/electron-es6-react

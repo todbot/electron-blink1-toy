@@ -12,14 +12,24 @@ var Grid = require('react-bootstrap').Grid;
 // var Input = require('react-bootstrap').Input;
 var tinycolor = require('tinycolor2');
 
+var blink1 = null;
+var devices = [];
 var Blink1 = require('node-blink1');
 
-var devices = Blink1.devices(); // returns array of serial numbers
-var blink1 = null;
+devices = Blink1.devices(); // returns array of serial numbers
 if( devices.length ) { // have at least one blink(1) plugged in
     console.log("Found blink1 devices: ", devices);
     blink1 = new Blink1();
     blink1.fadeToRGB(100, 120,100,80 );
+}
+else {
+  console.log("no blink1 devices found");
+}
+
+// on reload, release the blink1
+window.onbeforeunload = (e) => {
+  console.log('window is about to be closed/reloaded')
+  if( blink1 ) { blink1.close() }
 }
 
 var App = React.createClass({
@@ -57,7 +67,7 @@ var App = React.createClass({
         };
         return (
             <Grid>
-               <h1> Electron Blink(1) Toy! </h1>
+               <h1> Electron blink(1) Toy! </h1>
                 {makeDevList()}
 
                 <Row>
@@ -78,4 +88,6 @@ var App = React.createClass({
     }
 });
 
-ReactDOM.render( <App />,  document.getElementById('example') );
+//ReactDOM.render( <App />,  document.getElementById('example') );
+
+ReactDOM.render(<App />, document.getElementById('app'))
