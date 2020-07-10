@@ -2,7 +2,7 @@
 
 A simple Electron app to experiment with `node-blink1` & `node-hid`.
 
-Tested on Electron v1.2.6+.
+Tested on Electron v8+
 
 Assumes you have blink(1) device plugged in before running app.
 
@@ -24,7 +24,8 @@ npm run dist
 
 #### Note:
 On certain OS + Electron version combinations, `node-hid` will need to be
-recompiled for Electron, so you will need C compiler installed.
+recompiled for Electron, so you will need C compiler installed.  
+This is not normally needed for Mac & Windows.
 
 For more details on what you need, see:
 * https://github.com/nodejs/node-gyp#installation
