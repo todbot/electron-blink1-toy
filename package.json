@@ -32,6 +32,9 @@
       "gatekeeperAssess": false,
       "hardenedRuntime": true,
       "target": "zip"
+    },
+    "win": {
+      "target": "zip"
     }
   },
   "browserslist": "electron 3.0",
