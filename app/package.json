@@ -1,0 +1,17 @@
+{
+  "name": "electron-blink1-toy",
+  "version": "0.2.0",
+  "description": "Play with Electron and node-blink1",
+  "main": "main.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "node-blink1": "^0.4.0",
+    "react": "^0.14.2",
+    "react-bootstrap": "^0.27.3",
+    "react-dom": "^0.14.2",
+    "tinycolor2": "^1.3.0"
+  }
+}
