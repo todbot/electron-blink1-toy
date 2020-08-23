@@ -25,13 +25,15 @@
   ],
   "build": {
     "appId": "org.thingm.electron-blink1-toy",
+    "afterSign": "./pkg/afterSign.js",
     "npmRebuild": true,
     "mac": {
-      "entitlements": "./pkg/entitlements.mac.inherit.plist",
-      "entitlementsInherit": "./pkg/entitlements.mac.inherit.plist",
+      "target": "zip",
+      "category": "public.app-category.utilities",
       "gatekeeperAssess": false,
       "hardenedRuntime": true,
-      "target": "zip"
+      "entitlements": "./pkg/entitlements.mac.inherit.plist",
+      "entitlementsInherit": "./pkg/entitlements.mac.inherit.plist"
     },
     "win": {
       "target": "zip"
@@ -45,7 +47,8 @@
     "babel-loader": "^8.1.0",
     "cross-env": "^7.0.2",
     "electron": "^9.0.5",
-    "electron-builder": "^22.7.0",
+    "electron-builder": "^22.8.0",
+    "electron-notarize": "^1.0.0",
     "html-webpack-plugin": "^4.3.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
