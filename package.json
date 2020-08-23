@@ -7,7 +7,7 @@
     "start": "electron app",
     "startdev": "cross-env NODE_ENV=development npm run start",
     "watch": "cross-env NODE_ENV=development webpack-dev-server",
-    "webpack": "cross-env NODE_ENV=production webpack -p",
+    "pack": "cross-env NODE_ENV=production webpack -p",
     "webpackdev": "cross-env NODE_ENV=development webpack -p",
     "dist": "electron-builder",
     "dist:dir": "electron-builder --dir",
