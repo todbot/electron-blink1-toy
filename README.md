@@ -9,14 +9,14 @@ Assumes you have blink(1) device plugged in before running app.
 To use:
 ```
 npm install
-npm run webpack
+npm run pack
 npm run start
 ```
 
 To build the application:
 ```
 npm install
-npm run webpack
+npm run pack
 npm run dist
 ```
 
