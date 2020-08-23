@@ -1,3 +1,5 @@
+// electron-blink1-toy
+// @todbot
 
 "use strict";
 

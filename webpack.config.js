@@ -9,7 +9,6 @@ var config = {
   output: {
     path: path.join(__dirname, '/app/build'),
     filename: 'bundle.js',    // "./app/build/bundle.js"
-    // publicPath: '/',
   },
   externals: {
     "node-hid": 'commonjs node-hid'
@@ -30,9 +29,7 @@ var config = {
   },
   plugins: [
     // Re-generate index.html with injected script tag.
-    //   The injected script tag contains a src value of the
-    // filename output defined above.
-        // new HtmlWebpackPlugin(),
+    // The injected script tag contains a src= output filename defined above
     new HtmlWebpackPlugin({
       inject: true,
       template: path.resolve(__dirname, 'app/index.html')

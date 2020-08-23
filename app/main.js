@@ -1,3 +1,6 @@
+// electron-blink1-toy
+// @todbot
+
 'use strict'
 
 var electron = require('electron');
@@ -18,8 +21,8 @@ function createMainWindow() {
     webPreferences: { nodeIntegration: true }
    });
 
-   var loadurl = 'file://' + __dirname + '/build/index.html';
-
+   //
+  var loadurl = 'file://' + __dirname + '/build/index.html';
   if (isDevelopment) {
     loadurl = 'http://localhost:8082/'; //`${process.env.ELECTRON_WEBPACK_WDS_PORT}`)
   }
