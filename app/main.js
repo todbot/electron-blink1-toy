@@ -18,20 +18,20 @@ function createMainWindow() {
     webPreferences: { nodeIntegration: true }
    });
 
-  var loadurl = 'file://' + __dirname + '/build/index.html';
+   var loadurl = 'file://' + __dirname + '/build/index.html';
 
-  window.loadURL( loadurl );
-
-  // if (isDevelopment) {
-    // window.loadURL(`http://localhost:8082/`); //`${process.env.ELECTRON_WEBPACK_WDS_PORT}`)
-  // }
+  if (isDevelopment) {
+    loadurl = 'http://localhost:8082/'; //`${process.env.ELECTRON_WEBPACK_WDS_PORT}`)
+  }
   // else {
-    // window.loadURL(formatUrl({
-    //   pathname: path.join(__dirname, 'index.html'),
-    //   protocol: 'file',
-    //   slashes: true
-    // }))
+  //   loadurl = formatUrl({
+  //     pathname: path.join(__dirname, 'index.html'),
+  //     protocol: 'file',
+  //     slashes: true
+  //   }))
   // }
+  console.log("loadurl=",loadurl);
+  window.loadURL( loadurl );
 
   window.on('closed', () => {
     mainWindow = null
