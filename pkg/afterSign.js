@@ -15,7 +15,7 @@ module.exports = async function (params) {
     if (process.platform !== 'darwin') {
       return;
     }
-    // console.log('afterSign hook triggered', params);
+    console.log('afterSign hook triggered', params);
     if(!appleId) throw new Error("no $APPLEID environment variable set");
     if(!appleIdPassword) throw new Error("no $APLEIDPASSWD environment variable set");
     if(!ascProvider) throw new Error("No $TEAM_SHORT_NAME environment variable set");

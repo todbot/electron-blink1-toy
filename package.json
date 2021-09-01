@@ -1,57 +1,57 @@
 {
   "name": "electron-blink1-toy",
-  "version": "0.3.0",
-  "description": "Play with Electron and node-blink1",
+  "version": "0.7.0",
+  "description": "Play with Electron and node-hid",
   "repository": "todbot/electron-blink1-toy",
-  "scripts": {
-    "start": "electron app",
-    "startdev": "cross-env NODE_ENV=development npm run start",
-    "watch": "cross-env NODE_ENV=development webpack-dev-server",
-    "pack": "cross-env NODE_ENV=production webpack -p",
-    "webpackdev": "cross-env NODE_ENV=development webpack -p",
-    "dist": "electron-builder",
-    "dist:dir": "electron-builder --dir",
-    "postinstall": "electron-builder install-app-deps",
-    "clean": "rimraf node_modules app/node_modules app/build dist"
-  },
   "author": "Tod Kurt <todbotdotcom@gmail.com> (https://github.com/todbot)",
   "license": "ISC",
+  "scripts": {
+    "dev": "electron-webpack dev",
+    "compile": "electron-webpack",
+    "dist": "yarn compile && electron-builder",
+    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
+  },
   "keywords": [
+    "hid",
+    "node-hid",
     "blink(1)",
     "blink1",
-    "node-hid",
     "usb",
     "electron"
   ],
   "build": {
-    "appId": "org.thingm.electron-blink1-toy",
-    "afterSign": "./pkg/afterSign.js",
-    "npmRebuild": true,
+    "appId": "com.todbot.electron-blink1-toy",
+    "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+    "afterSign": "pkg/notarize.js",
     "mac": {
       "target": "zip",
       "category": "public.app-category.utilities",
-      "gatekeeperAssess": false,
+      "icon": "pkg/icon.icns",
       "hardenedRuntime": true,
+      "gatekeeperAssess": false,
       "entitlements": "./pkg/entitlements.mac.inherit.plist",
       "entitlementsInherit": "./pkg/entitlements.mac.inherit.plist"
     },
     "win": {
-      "target": "zip"
+      "target": "zip",
+      "icon": "pkg/icon.ico"
     }
   },
-  "browserslist": "electron 3.0",
+  "dependencies": {
+    "bootstrap": "^4.6.0",
+    "node-blink1": "^0.5.1",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.6.1",
+    "react-dom": "^17.0.2",
+    "source-map-support": "^0.5.19",
+    "tinycolor2": "^1.4.2"
+  },
   "devDependencies": {
-    "@babel/core": "^7.10.4",
-    "@babel/preset-env": "^7.10.4",
-    "@babel/preset-react": "^7.10.4",
-    "babel-loader": "^8.1.0",
-    "cross-env": "^7.0.2",
-    "electron": "^9.0.5",
-    "electron-builder": "^22.8.0",
-    "electron-notarize": "^1.0.0",
-    "html-webpack-plugin": "^4.3.0",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "@babel/preset-react": "^7.14.5",
+    "electron": "11.4.12",
+    "electron-builder": "^22.4.1",
+    "electron-notarize": "^1.1.0",
+    "electron-webpack": "^2.8.2",
+    "webpack": "~4.42.1"
   }
 }
