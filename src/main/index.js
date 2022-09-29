@@ -17,7 +17,7 @@ function createMainWindow() {
   const window = new BrowserWindow( {
     width: 500,
     height: 500,
-    webPreferences: { nodeIntegration: true }
+    webPreferences: { nodeIntegration: true, contextIsolation: false }
   })
 
   if (isDevelopment) {

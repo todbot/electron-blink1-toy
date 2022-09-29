@@ -1,6 +1,6 @@
 {
   "name": "electron-blink1-toy",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Play with Electron and node-hid",
   "repository": "todbot/electron-blink1-toy",
   "author": "Tod Kurt <todbotdotcom@gmail.com> (https://github.com/todbot)",
@@ -24,13 +24,15 @@
     "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
     "afterSign": "pkg/notarize.js",
     "mac": {
-      "target": "zip",
-      "category": "public.app-category.utilities",
-      "icon": "pkg/icon.icns",
-      "hardenedRuntime": true,
-      "gatekeeperAssess": false,
-      "entitlements": "./pkg/entitlements.mac.inherit.plist",
-      "entitlementsInherit": "./pkg/entitlements.mac.inherit.plist"
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ]
     },
     "win": {
       "target": "zip",
@@ -48,7 +50,7 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
-    "electron": "11.4.12",
+    "electron": "^21.0.1",
     "electron-builder": "^22.4.1",
     "electron-notarize": "^1.1.0",
     "electron-webpack": "^2.8.2",
