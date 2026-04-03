@@ -7,8 +7,8 @@ on:
     types: [created]
   workflow_dispatch:
     inputs:
-      notarize:
-        description: 'Notarize and publish'
+      sign:
+        description: 'Sign and notarize'
         type: boolean
         default: false
 
@@ -38,7 +38,7 @@ jobs:
         run: npm install
 
       - name: Codesign setup for macOS
-        if: env.CSC_NAME != '' && env.MACOS_CERTIFICATE != ''
+        if: env.MACOS_CERTIFICATE != '' && env.MACOS_CERTIFICATE_PWD != ''
         run: |
           echo $MACOS_CERTIFICATE | base64 --decode > certificate.p12
           security create-keychain -p actions build.keychain
@@ -51,7 +51,7 @@ jobs:
         run: npm run build:dir
 
       - name: Notarize
-        if: "contains(github.event.head_commit.message, '[publish]') || inputs.notarize"
+        if: "contains(github.event.head_commit.message, '[publish]') || inputs.sign"
         run: npm run build
 
       - name: Upload artifacts
