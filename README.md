@@ -6,14 +6,18 @@ Assumes you have blink(1) device plugged in before running app.
 
 To use:
 ```
-yarn
-yarn dev
+npm install
+npm run dev
 ```
 
 To build the application:
 ```
-yarn
-yarn dist
+npm run build
+```
+
+To clean generated files:
+```
+npm run clean
 ```
 
 ![screenshot](./screenshot.png)
