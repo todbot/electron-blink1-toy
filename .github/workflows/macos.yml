@@ -47,10 +47,10 @@ jobs:
           security import certificate.p12 -k build.keychain -P $MACOS_CERTIFICATE_PWD -T /usr/bin/codesign
           security set-key-partition-list -S apple-tool:,apple: -s -k actions build.keychain
 
-      - name: Build (unpacked)
+      - name: Build (unsigned, unpacked)
         run: npm run build:dir
 
-      - name: Notarize
+      - name: Build (signed & notarized)
         if: "contains(github.event.head_commit.message, '[publish]') || inputs.sign"
         run: npm run build
 
@@ -61,5 +61,3 @@ jobs:
           path: |
             release/*.zip
             release/*.dmg
-            release/*.blockmap
-            release/latest*.yml
