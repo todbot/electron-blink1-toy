@@ -1,37 +1,57 @@
 name: Windows Build
 
 on:
+  push:
+  pull_request:
+  release:
+    types: [created]
   workflow_dispatch:
     inputs:
       sign:
-        description: 'Code sign'
-        required: false
-        default: 'true'
+        description: 'Sign artifacts'
         type: boolean
+        default: false
 
 jobs:
   build:
     runs-on: windows-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out Git repository
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20
+          cache: npm
 
       - name: Install dependencies
         run: npm install
 
       - name: Build
-        env:
-          CSC_LINK: ${{ secrets.CSC_LINK }}
-          CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
-        run: npm run build
+        run: |
+          npm run build
+
+      - name: Sign artifacts
+        if: "contains(github.event.head_commit.message, '[publish]') || inputs.sign"
+        uses: azure/trusted-signing-action@v0
+        with:
+          azure-tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          azure-client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          azure-client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+          endpoint: https://wus2.codesigning.azure.net/
+          trusted-signing-account-name: ${{ secrets.AZURE_TRUSTED_SIGNING_ACCOUNT_NAME }}
+          certificate-profile-name: ${{ secrets.AZURE_CERTIFICATE_PROFILE_NAME }}
+          files-folder: release
+          files-folder-filter: exe
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: windows-build
-          path: release/
-          retention-days: 5
+          name: electron-blink1-toy-${{ runner.os }}
+          path: |
+            release/*.zip
+            release/*.exe
+            release/*.blockmap
+            release/latest*.yml

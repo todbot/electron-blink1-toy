@@ -1,44 +1,53 @@
 name: macOS Build
 
 on:
+  push:
+  pull_request:
+  release:
+    types: [created]
   workflow_dispatch:
     inputs:
-      sign:
-        description: 'Code sign and notarize'
-        required: false
-        default: 'true'
+      notarize:
+        description: 'Notarize and publish'
         type: boolean
+        default: false
+
+env:
+  CSC_NAME: ${{ secrets.CSC_NAME }}
+  APPLE_ID: ${{ secrets.APPLE_ID }}
+  APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+  APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
 
 jobs:
   build:
     runs-on: macos-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out Git repository
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20
+          cache: npm
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build
-        env:
-          CSC_NAME: ${{ secrets.CSC_NAME }}
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
-          TEAM_ID: ${{ secrets.TEAM_ID }}
-        run: |
-          if [ "${{ inputs.sign }}" = "true" ]; then
-            npm run build
-          else
-            npm run build:dir
-          fi
+      - name: Build (unpacked)
+        run: npm run build:dir
+
+      - name: Notarize
+        if: "contains(github.event.head_commit.message, '[publish]') || inputs.notarize"
+        run: npm run build
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: macos-build
-          path: release/
-          retention-days: 5
+          name: electron-blink1-toy-${{ runner.os }}
+          path: |
+            release/*.zip
+            release/*.dmg
+            release/*.blockmap
+            release/latest*.yml
