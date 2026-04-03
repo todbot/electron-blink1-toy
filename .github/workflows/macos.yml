@@ -14,6 +14,9 @@ on:
 
 env:
   CSC_NAME: ${{ secrets.CSC_NAME }}
+  CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
+  MACOS_CERTIFICATE: ${{ secrets.MACOS_CERTIFICATE }}
+  MACOS_CERTIFICATE_PWD: ${{ secrets.MACOS_CERTIFICATE_PWD }}
   APPLE_ID: ${{ secrets.APPLE_ID }}
   APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
   APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
@@ -34,6 +37,16 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+
+      - name: Codesign setup for macOS
+        if: env.CSC_NAME != ''
+        run: |
+          echo $MACOS_CERTIFICATE | base64 --decode > certificate.p12
+          security create-keychain -p actions build.keychain
+          security default-keychain -s build.keychain
+          security unlock-keychain -p actions build.keychain
+          security import certificate.p12 -k build.keychain -P $MACOS_CERTIFICATE_PWD -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple: -s -k actions build.keychain
 
       - name: Build (unpacked)
         run: npm run build:dir
