@@ -23,6 +23,7 @@
   "build": {
     "appId": "com.todbot.electron-blink1-toy",
     "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+    "afterSign": "scripts/notarize.js",
     "directories": {
       "output": "release"
     },
@@ -31,6 +32,7 @@
       "dist-electron/**/*"
     ],
     "mac": {
+      "notarize": false,
       "target": [
         {
           "target": "zip",
@@ -45,6 +47,9 @@
     "win": {
       "target": "zip",
       "icon": "pkg/icon.ico"
+    },
+    "linux": {
+      "target": "zip"
     }
   },
   "dependencies": {
@@ -53,6 +58,7 @@
     "tinycolor2": "^1.4.2"
   },
   "devDependencies": {
+    "@electron/notarize": "^3.1.1",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "@vitejs/plugin-react": "^4.3.0",
