@@ -14,7 +14,6 @@ on:
 
 env:
   CSC_NAME: ${{ secrets.CSC_NAME }}
-  CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
   MACOS_CERTIFICATE: ${{ secrets.MACOS_CERTIFICATE }}
   MACOS_CERTIFICATE_PWD: ${{ secrets.MACOS_CERTIFICATE_PWD }}
   APPLE_ID: ${{ secrets.APPLE_ID }}
@@ -39,7 +38,7 @@ jobs:
         run: npm install
 
       - name: Codesign setup for macOS
-        if: env.CSC_NAME != ''
+        if: env.CSC_NAME != '' && env.MACOS_CERTIFICATE != ''
         run: |
           echo $MACOS_CERTIFICATE | base64 --decode > certificate.p12
           security create-keychain -p actions build.keychain
