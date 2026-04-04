@@ -10,7 +10,10 @@
     "dev": "vite",
     "build": "vite build && electron-builder",
     "build:dir": "vite build && electron-builder --dir",
-    "clean": "npx rimraf dist dist-electron release node_modules package-lock.json"
+    "pack": "vite build",
+    "dist:draft": "vite build && electron-builder",
+    "dist": "vite build && electron-builder --publish always",
+    "clean": "npx rimraf dist dist-electron release node_modules"
   },
   "keywords": [
     "hid",
