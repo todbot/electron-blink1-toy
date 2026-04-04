@@ -38,11 +38,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Pack (bundle only)
-        run: npm run pack
-
       - name: Build (draft, unpacked)
-        run: npm run build:dir
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: false
+          APPLE_TEAM_ID: false
+        run: npm run dist:draft
 
       - name: Codesign setup for macOS
         if: "(contains(github.event.head_commit.message, '[publish]') || inputs.sign) && env.MACOS_CERTIFICATE != '' && env.MACOS_CERTIFICATE_PWD != ''"
@@ -56,7 +56,7 @@ jobs:
 
       - name: Build (signed & notarized)
         if: "(contains(github.event.head_commit.message, '[publish]') || inputs.sign) && env.MACOS_CERTIFICATE != '' && env.MACOS_CERTIFICATE_PWD != ''"
-        run: npm run dist
+        run: npm run build
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v5
