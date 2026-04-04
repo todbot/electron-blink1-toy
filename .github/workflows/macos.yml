@@ -41,10 +41,8 @@ jobs:
       - name: Pack (bundle only)
         run: npm run pack
 
-      - name: Build (draft, unsigned)
-        env:
-          CSC_IDENTITY_AUTO_DISCOVERY: false
-        run: npm run dist:draft
+      - name: Build (draft, unpacked)
+        run: npm run build:dir
 
       - name: Codesign setup for macOS
         if: "(contains(github.event.head_commit.message, '[publish]') || inputs.sign) && env.MACOS_CERTIFICATE != '' && env.MACOS_CERTIFICATE_PWD != ''"
