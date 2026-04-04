@@ -63,6 +63,5 @@ jobs:
         with:
           name: electron-blink1-toy-${{ runner.os }}
           path: |
-            release/
-            !release/*.blockmap
-            !release/latest*.yml
+            release/*.zip
+            release/*.dmg

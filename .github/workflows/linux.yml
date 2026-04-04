@@ -39,4 +39,6 @@ jobs:
         with:
           name: electron-blink1-toy-${{ runner.os }}
           path: |
-            release/
+            release/*.zip
+            release/*.AppImage
+            release/*.snap
