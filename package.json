@@ -11,7 +11,7 @@
     "build": "vite build && electron-builder",
     "build:dir": "vite build && electron-builder --dir",
     "pack": "vite build",
-    "dist:draft": "vite build && electron-builder",
+    "dist:draft": "vite build && electron-builder --publish=never",
     "dist": "vite build && electron-builder --publish always",
     "clean": "npx rimraf dist dist-electron release node_modules"
   },
