@@ -40,8 +40,8 @@ jobs:
           azure-client-id: ${{ secrets.AZURE_CLIENT_ID }}
           azure-client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
           endpoint: https://wus2.codesigning.azure.net/
-          trusted-signing-account-name: ${{ secrets.AZURE_TRUSTED_SIGNING_ACCOUNT_NAME }}
-          certificate-profile-name: ${{ secrets.AZURE_CERTIFICATE_PROFILE_NAME }}
+          trusted-signing-account-name: thingm-signing
+          certificate-profile-name: ThingMProfile
           files-folder: release/win-unpacked
           files-folder-filter: exe
 
