@@ -42,6 +42,8 @@ jobs:
         run: npm run pack
 
       - name: Build (draft, unsigned)
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: false
         run: npm run dist:draft
 
       - name: Codesign setup for macOS
@@ -55,7 +57,7 @@ jobs:
           security set-key-partition-list -S apple-tool:,apple: -s -k actions build.keychain
 
       - name: Build (signed & notarized)
-        if: "contains(github.event.head_commit.message, '[publish]') || inputs.sign"
+        if: "(contains(github.event.head_commit.message, '[publish]') || inputs.sign) && env.MACOS_CERTIFICATE != '' && env.MACOS_CERTIFICATE_PWD != ''"
         run: npm run dist
 
       - name: Upload artifacts
