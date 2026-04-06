@@ -34,7 +34,7 @@ jobs:
 
       - name: Sign artifacts
         if: "contains(github.event.head_commit.message, '[publish]') || inputs.sign"
-        uses: azure/trusted-signing-action@v0
+        uses: azure/trusted-signing-action@v1
         with:
           azure-tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           azure-client-id: ${{ secrets.AZURE_CLIENT_ID }}
