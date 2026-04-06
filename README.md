@@ -20,7 +20,7 @@ To clean generated files:
 npm run clean
 ```
 
-![screenshot](./screenshot.png)
+<img src="./docs/tauri-blink1-toy-screenshot.png" width=700 />
 
 #### Note:
 On certain OS + Electron version combinations, `node-hid` will need to be
